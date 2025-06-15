@@ -3,7 +3,7 @@ import { upgradeWebSocket } from 'hono/deno'
 
 const rooms = new Map()
 
-const app = new Hono()
+export const app = new Hono()
   .get('/', (c) => c.html('<h1>server is ok</h1>'))
   .get('/ws/rooms/:roomId', upgradeWebSocket(context => {
     const roomId = context.req.param('roomId')
