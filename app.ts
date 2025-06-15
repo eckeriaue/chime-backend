@@ -9,7 +9,7 @@ export const app = new Hono()
     const roomId = context.req.param('roomId')
     return {
       onOpen(event, ws) {
-        rooms.set(roomId, ws)
+        rooms.set(roomId, { ws })
       },
       onMessage(event, ws) {
         console.info(event)
