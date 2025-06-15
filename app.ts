@@ -1,9 +1,11 @@
 import { Hono } from 'hono'
+import { cors } from 'hono/cors'
 import { upgradeWebSocket } from 'hono/deno'
 
 const rooms = new Map()
 
 export const app = new Hono()
+  .use(cors({ origin: '*' }))
   .get('/', (c) => c.html('<h1>server is ok</h1>'))
   .post('/rooms/create', async context => {
     const { roomName, roomPassword = null, roomUid } = await context.req.json()
