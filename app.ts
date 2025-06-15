@@ -5,6 +5,12 @@ const rooms = new Map()
 
 export const app = new Hono()
   .get('/', (c) => c.html('<h1>server is ok</h1>'))
+  .post('/rooms/create', async context => {
+    const { roomName, roomPassword = null, roomUid } = await context.req.json()
+    rooms.set(roomUid, { roomName, roomPassword, ws: null })
+    context.status(201)
+    return context.json({ message: 'Room created',  })
+  })
   .get('/ws/rooms/', upgradeWebSocket(context => {
     const roomId = context.req.param('roomId')
     return {
