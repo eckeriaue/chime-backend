@@ -10,7 +10,7 @@ export const app = new Hono()
   .get('/', (c) => c.html('<h1>server is ok</h1>'))
   .post('/rooms/create', async context => {
     const { roomName, roomPassword, roomUid } = await context.req.json()
-    rooms.set(roomUid, { roomName, roomPassword, ws: null })
+    rooms.set(roomUid, { roomName, roomPassword, roomUid, ws: null })
     context.status(201)
     return context.json({ status: 'ok' })
   })
