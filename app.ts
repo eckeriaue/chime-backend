@@ -5,7 +5,7 @@ const rooms = new Map()
 
 export const app = new Hono()
   .get('/', (c) => c.html('<h1>server is ok</h1>'))
-  .get('/ws/rooms/:roomId', upgradeWebSocket(context => {
+  .get('/ws/rooms/*', upgradeWebSocket(context => {
     const roomId = context.req.param('roomId')
     return {
       onOpen(event, ws) {
