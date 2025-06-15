@@ -1,0 +1,24 @@
+{
+  "name": "shimmer",
+  "version": "1.0.0",
+  "description": "``` deno task start ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eckeriaue/chime-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/eckeriaue/chime-backend/issues"
+  },
+  "homepage": "https://github.com/eckeriaue/chime-backend#readme",
+  "dependencies": {
+    "socket.io": "^4.8.1"
+  }
+}
