@@ -6,7 +6,7 @@ const rooms = new Map()
 
 export const app = new Hono()
   .use('/rooms/*', cors({ origin: '*' }))
-  .get('/rooms/paginate', (c) => c.json([...rooms.values()]))
+  .get('/rooms', (c) => c.json([...rooms.values()]))
   .get('/', (c) => c.html('<h1>server is ok</h1>'))
   .post('/rooms/create', async context => {
     const { roomName, roomPassword, roomUid } = await context.req.json()
