@@ -14,7 +14,7 @@ export const app = new Hono()
     context.status(201)
     return context.json({ status: 'ok' })
   })
-  .get('/ws/rooms/', upgradeWebSocket(context => {
+  .get('/ws/rooms/:roomId', upgradeWebSocket(context => {
     const roomId = context.req.param('roomId')
     return {
       onOpen(event, ws) {
