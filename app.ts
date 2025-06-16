@@ -5,10 +5,14 @@ import { upgradeWebSocket } from 'hono/deno'
 const rooms = new Map()
 
 export const app = new Hono()
-  .use('/rooms/*', cors({ origin: '*' }))
-  .get('/rooms', (c) => c.json([...rooms.values()]))
+  .use('/api/rooms/*', cors({ origin: '*' }))
+  .get('/api/rooms', (c) => c.json([...rooms.values()]))
   .get('/', (c) => c.html('<h1>server is ok</h1>'))
-  .post('/rooms/create', async context => {
+
+  .get('/api/rooms/:roomId/users', context => {
+    return context.json(rooms.get(context.req.param('roomId')).users)
+  })
+  .post('/api/rooms/create', async context => {
     const { roomName, roomPassword, roomUid } = await context.req.json()
     rooms.set(roomUid, { roomName, roomPassword, roomUid, ws: null })
     context.status(201)
